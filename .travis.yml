@@ -18,7 +18,7 @@ deploy:
   script:
     docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku release: sh -c 'cd decide && python manage.py migrate';
+    # heroku release: sh -c 'cd decide && python manage.py migrate';
     heroku container:release web --app $HEROKU_APP_NAME
   branch: master
 addons:
