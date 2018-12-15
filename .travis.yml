@@ -2,12 +2,12 @@ language: python
 python: 
  - "3.6.6"
 install:
- - pip install -r requirements.txt
+#  - pip install -r requirements.txt
 sudo: required
 services:
  - docker
 script:
- - sonar-scanner
+#  - sonar-scanner
  - cd docker
 #  - docker exec -ti decide_web ./manage.py test
 #  - cd ..
