@@ -9,15 +9,27 @@ services:
 script:
  - sonar-scanner
  - cd docker
- - docker exec -ti decide_web ./manage.py test
- - cd ..
+#  - docker exec -ti decide_web ./manage.py test
+#  - cd ..
+ - docker build -t camreyaro/decide .
+ - docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
+deploy:
+  provider: script
+  script:
+    docker push camreyaro/decide;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku container:release web --app $HEROKU_APP_NAME
+  branch: master
 addons:
   sonarcloud:
     organization: "pablotabares-github"
 notifications:
   email: false
 before_install:
- - cd docker
- - docker-compose up -d
- - cd ..
+ - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+ - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+#  - cd docker
+#  - docker-compose up -d
+#  - cd ..
 
