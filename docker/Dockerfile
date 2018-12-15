@@ -19,5 +19,6 @@ WORKDIR /app/decide
 ADD docker-settings.py /app/decide/local_settings.py
 
 RUN python manage.py collectstatic
+RUN python manage.py
 
-#CMD ["gunicorn", "-w 5", "decide.wsgi", "--timeout=500", "-b 0.0.0.0:5000"]
+CMD ["gunicorn", "-w 5", "decide.wsgi", "--timeout=500", "-b 0.0.0.0:5000"]
