@@ -23,7 +23,7 @@ before_script:
   - cp local_settings.travis.py local_settings.py
   - psql -c "create user decide with password 'decide'"
   - psql -c "create database decide owner decide"
-  - python decide/manage.py migrate
+  - python manage.py migrate
 addons:
   postgresql: "9.6"
 global:
@@ -33,7 +33,7 @@ deploy:
   script: docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME;
-    heroku run --app $HEROKU_APP_NAME python manage.py migrate
+    heroku run --app $HEROKU_APP_NAME python decide/manage.py migrate
   branch: master
 notifications:
   email: false
