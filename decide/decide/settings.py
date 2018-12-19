@@ -69,7 +69,7 @@ MODULES = [
 ]
 
 # BASEURL = 'http://localhost:8000'
-BASEURL = 'https://decide-docker.herokuapp.com'
+BASEURL = 'https://decide-ortosia.herokuapp.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
