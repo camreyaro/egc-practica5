@@ -29,14 +29,15 @@ addons:
 global:
   - PGPORT=5432
 deploy:
-  provider: script
+  provider: heroku
+  buildpack: python
   script: 
     docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME;
+    heroku run --app $HEROKU_APP_NAME python decide/manage.py migrate --all --settings=settings.heroku
   branch: master
-after_deploy:
-  script:
-    heroku run --app $HEROKU_APP_NAME python decide/manage.py migrate
+# after_deploy:
+  # script:
 notifications:
   email: false
