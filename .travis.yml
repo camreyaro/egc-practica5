@@ -9,7 +9,7 @@ services:
 script:
 #  - sonar-scanner
  - cd docker
-#  - docker exec -ti decide_web ./manage.py test
+ - docker exec -ti decide_web ./manage.py test
 #  - cd ..
  - docker build -t camreyaro/decide .
  - docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
@@ -23,9 +23,9 @@ deploy:
 after_deploy:
     script:
       python manage.py migrate
-addons:
-  sonarcloud:
-    organization: "pablotabares-github"
+# addons:
+  # sonarcloud:
+    # organization: "pablotabares-github"
 notifications:
   email: false
 before_install:
