@@ -7,7 +7,7 @@ install:
  - pip install -r requirements.txt
 sudo: required
 services:
- - docker
+#  - docker
  - postgresql
 before_script:
   - cd decide
@@ -17,20 +17,20 @@ before_script:
   - python manage.py migrate
 script:
 #  - sonar-scanner
- - cd ../docker
-#  - docker exec -ti decide_web ./manage.py test
+#  - cd ../docker
+# #  - docker exec -ti decide_web ./manage.py test
+# #  - cd ..
+#  - docker build -t camreyaro/decide .
+#  - docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
 #  - cd ..
- - docker build -t camreyaro/decide .
- - docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
- - cd ..
 deploy:
   provider: script
   script:
     python decide/manage.py test;
-    docker push camreyaro/decide;
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku container:release web --app $HEROKU_APP_NAME;
-    heroku run --app $HEROKU_APP_NAME python manage.py migrate 
+    # docker push camreyaro/decide;
+    # docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    # heroku container:release web --app $HEROKU_APP_NAME;
+    # heroku run --app $HEROKU_APP_NAME python manage.py migrate 
   branch: master
 # after_deploy:
     # script:
@@ -45,8 +45,8 @@ notifications:
   email: false
 before_install:
  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
- - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 #  - cd docker
 #  - docker-compose up -d
 #  - cd ..
