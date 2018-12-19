@@ -10,13 +10,14 @@ services:
  - docker
  - postgresql
 before_script:
-  - cp local_settings.travis.py decide/local_settings.py
+  - cd decide
+  - cp local_settings.travis.py local_settings.py
   - psql -c "create user decide with password 'decide'" 
   - psql -c "create database decide owner decide"
   - python decide/manage.py migrate
 script:
 #  - sonar-scanner
- - cd docker
+ - cd ../docker
 #  - docker exec -ti decide_web ./manage.py test
 #  - cd ..
  - docker build -t camreyaro/decide .
