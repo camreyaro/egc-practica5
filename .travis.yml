@@ -1,27 +1,27 @@
-language: python 
-python: 
-- "3.6"
-env: 
-- DJANGO=2.0 DB=postgres
-before_install: 
-- wget -qO- https://toolbelt.heroku.com/install.sh | sh
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
-- cd decide
-install: 
-- pip install -r ../requirements.txt
-script: 
-- python manage.py test
-- cd ../docker
-- docker build -t camreyaro/decide .
-- docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
-- cd ../decide
+language: python
+python:
+  - "3.6"
+env:
+  - DJANGO=2.0 DB=postgres
+before_install:
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  - cd decide
+install:
+  - pip install -r ../requirements.txt
+script:
+  - python manage.py test
+  - cd ../docker
+  - docker build -t camreyaro/decide .
+  - docker tag camreyaro/decide registry.heroku.com/$HEROKU_APP_NAME/web
+  - cd ../decide
 services:
   - postgresql
   - docker
 before_script:
   - cp local_settings.travis.py local_settings.py
-  - psql -c "create user decide with password 'decide'" 
+  - psql -c "create user decide with password 'decide'"
   - psql -c "create database decide owner decide"
   - python manage.py migrate
 addons:
@@ -30,11 +30,10 @@ global:
   - PGPORT=5432
 deploy:
   provider: script
-  script:
-    docker push camreyaro/decide;
+  script: docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME;
-    heroku run --app $HEROKU_APP_NAME python manage.py migrate 
+    heroku run --app $HEROKU_APP_NAME python manage.py migrate
   branch: master
 notifications:
   email: false
