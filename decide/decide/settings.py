@@ -112,7 +112,7 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
 }
-DATABASES['default'] = dj_database_url.config(default='postgres://lkjgzznhwqrqsq:150213f5f3b71869672273df1fded408801e487de56c1a4eba1e375dd1ecb29c@ec2-54-247-125-116.eu-west-1.compute.amazonaws.com:5432/d1mapbh3g777k2')
+DATABASES['default'] = dj_database_url.config(default='postgres://kyieednscgudbr:9fc10bcd97d5d1cdcf2ffb059b3b683ddce7ea287f80cfbf3eef953492c1e3f6@ec2-54-247-125-116.eu-west-1.compute.amazonaws.com:5432/dfrhqnuvjhkcsh')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
