@@ -31,11 +31,14 @@ global:
 deploy:
   provider: heroku
   buildpack: python
+  app: $HEROKU_APP_NAME
   script: 
     docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     heroku container:release web --app $HEROKU_APP_NAME;
-    heroku run --app $HEROKU_APP_NAME python decide/manage.py migrate --all --settings=settings.heroku 
+    # heroku run --app $HEROKU_APP_NAME python decide/manage.py migrate --all --settings=settings.heroku 
+  run:
+    - "python decide/manage.py migrate"
   branch: master
 # after_deploy:
   # script:
