@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -70,7 +71,7 @@ MODULES = [
 ]
 
 # BASEURL = 'http://localhost:8000'
-# BASEURL = 'https://decide-ortosia.herokuapp.com'
+BASEURL = 'https://decide-docker.herokuapp.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -165,5 +166,4 @@ except ImportError:
 
 INSTALLED_APPS = INSTALLED_APPS + MODULES
 
-# import django_heroku
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
