@@ -21,4 +21,5 @@ ADD docker-settings.py /app/decide/local_settings.py
 # RUN python manage.py migrate
 
 # CMD ["gunicorn", "-w 5", "decide.wsgi", "--timeout=500", "-b 0.0.0.0:5000"]
-CMD ["gunicorn", "decide.wsgi", "--log-level", "critical"]
+# CMD ["gunicorn", "decide.wsgi", "--log-level", "critical"]
+CMD ["python","manage.py","runserver","0.0.0.0:8000"]
