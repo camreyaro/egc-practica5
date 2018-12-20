@@ -27,16 +27,16 @@ MODULES = [
     'voting',
 ]
 
-BASEURL = 'http://localhost:$PORT'
+BASEURL = 'https://decide-docker.herokuapp.com'
 
 APIS = {
-    'authentication': 'http://localhost:$PORT',
-    'base': 'http://localhost:$PORT',
-    'booth': 'http://localhost:$PORT',
-    'census': 'http://localhost:$PORT',
-    'mixnet': 'http://localhost:$PORT',
-    'postproc': 'http://localhost:$PORT',
-    'store': 'http://localhost:$PORT',
-    'visualizer': 'http://localhost:$PORT',
-    'voting': 'http://localhost:$PORT',
+    'authentication': 'https://decide-docker.herokuapp.com',
+    'base': 'https://decide-docker.herokuapp.com',
+    'booth': 'https://decide-docker.herokuapp.com',
+    'census': 'https://decide-docker.herokuapp.com',
+    'mixnet': 'https://decide-docker.herokuapp.com',
+    'postproc': 'https://decide-docker.herokuapp.com',
+    'store': 'https://decide-docker.herokuapp.com',
+    'visualizer': 'https://decide-docker.herokuapp.com',
+    'voting': 'https://decide-docker.herokuapp.com',
 }
