@@ -32,6 +32,7 @@ deploy:
   provider: heroku
   buildpack: python
   app: $HEROKU_APP_NAME
+  api_key: $HEROKU_API_KEY
   script: 
     docker push camreyaro/decide;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
