@@ -13,3 +13,4 @@ slackclient>=1.1.0
 django-heroku
 gunicorn
 dj_database_url
+waitress
