@@ -10,9 +10,7 @@ from .serializers import UserSerializer
 class GetUserView(APIView):
     def post(self, request):
         key = request.data.get('token', '')
-        print("la clave es..." +key)
         tk = get_object_or_404(Token, key=key)
-        print("el tk este extraño es..."+tk)
         return Response(UserSerializer(tk.user, many=False).data)
 
 
